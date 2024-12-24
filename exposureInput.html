@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="exposureInputCSS.css" />
+    <title>Redesign Test</title>
+</head>
+<body>
+    <div id="titleBar">
+        <h1>Exposure Input</h1>
+    </div>
+    <div id="leftbar">
+  		<button id="back" class="button roundButton" onclick="parent.location='index.html'"></button>
+      <button class="button roundButton" id="question">?</button>
+      <div id="questionText" class="hidden">
+          <p>An exposure is the main component of Exposure and Response Prevention Therapy. Your hierarchy is a list of all your exposures you'll be working on, listed from easiest to most challenging. It's recommended to start with level 3-4 exposures and continue doing them until the level 5-7 ones become easier and drop down to level 3-4. First enter the exposure in the exposure box, enter a rating from 1-7, and hit add exposure.</p>
+      </div>
+      <button id="addExposure" onclick="createNewTable();" class="button">Add exposure</button>
+      <button id="removeExposure" class="button" onclick="clearTables();">Clear exposures</button>
+      <button id="submit" class="button" onclick = "updateTables();">Save Exposures</button>
+    </div>
+    <div id="mainBar">
+    </div>
+    <script src="exposureInputJS.js"></script>
+</body>
+</html>

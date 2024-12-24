@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+</script>
+<style type="text/css">
+
+	body {
+  	background-color: #7dcfb6;
+	}
+
+	h1 {
+		font-family: officeSquare;
+		font-size: 100px;
+		margin: 10px;
+		text-shadow: 5px 5px #f79256, 
+                    1px 1px 0 #f79256,
+                    1px -1px 0 #f79256,
+                    -1px -1px 0 #f79256;
+    cursor: pointer;
+    color: #1c4e89;
+	}
+
+	h2 {
+		font-family: officeSquare;
+		font-size: 42px;
+		color: #1c4e89;
+		text-shadow: 5px 5px #f79256, 
+                    1px 1px 0 #f79256,
+                    1px -1px 0 #f79256,
+                    -1px -1px 0 #f79256;
+
+	}
+
+	a {
+		font-family: officeSquare;
+		font-size: 24px;
+		color: #fad1a2;
+	}
+
+	p {
+		font-family: officeSquare;
+		font-size: 24px;
+		color: #1c4e89;
+	}
+
+	textarea {
+		width: 300px;
+		height: 265px;
+		margin: 5px;
+		background-color: #f2ebda;
+		border: 4px solid #1c4e89;
+    border-radius: 5px;
+    color:#1c4e89;
+    font-family: officeSquare;
+    font-size: 24px;
+    resize: none;
+    position: relative;
+    box-shadow: inset 5px 10px 10px #a8a491;
+	}
+
+	ul {
+    margin: 0px;
+	}
+
+	@font-face {
+			font-family: officeSquare;
+			src: url(assets/fonts/OfficeSquare-Ayvg.ttf);
+		}
+
+	.button {
+	  padding: 5px 5px;
+      font-size: 36px;
+      font-family: officeSquare;
+      color: #f2ebda;
+      cursor: pointer;
+      text-align: center;
+      background-color: #f79256;
+      border: 4px solid #1c4e89;
+      border-radius: 5px;
+      box-shadow: 3px 7px #999;
+      margin: 5px;
+	}
+
+	.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.button:hover {background-color: #00b1ca;}
+
+  .button:active {
+  background-color: #00b1ca;
+  box-shadow: 2px 2px #999;
+  transform: translate(4px, 4px);
+  } 
+
+	#leftbar {
+		background-color: #fad1a2;
+		border:5px solid #1c4e89;
+  	border-style: dashed;
+  	width: 525px;
+  	height: 740px;
+  	text-align: center;
+  	box-shadow: 12px 15px 15px #416b5f;
+  }
+
+  #paperBox {
+  	position: absolute;
+  	right: 0px;
+  	top: 0px;
+  	width: 870px;
+  	height: 740px;
+  	margin: 7px;
+  	color:#1c4e89;
+    background-color: #fad1a2;
+		border:5px solid #1c4e89;
+  	border-style: dashed;
+  	box-shadow: 12px 15px 15px #416b5f;
+  }
+
+  #removeExps {
+  	position: absolute;
+  	bottom: 22px;
+  	left: 305px;
+  }
+
+  #hierarchy {
+  	text-align: center;
+  }
+
+  #listBox {
+  	overflow:scroll;
+  	color:#1c4e89;
+    font-family: officeSquare;
+    font-size: 42px;
+    background-color: #f2ebda;
+		border:4px solid #1c4e89;
+		border-radius: 5px;
+  	width: 600px;
+  	height: 520px;
+  	z-index: 5px;
+  	box-shadow: inset 5px 10px 10px #a8a491;
+  }
+
+  #numberInput {
+  	width: 150px;
+		height: 150px;
+		margin: 5px;
+		background-color: #f2ebda;
+		border: 4px solid #1c4e89;
+    border-radius: 5px;
+    color:#1c4e89;
+    font-family: officeSquare;
+    font-size: 84px;
+    position: relative;
+    bottom: 175px;
+  }
+
+  #addExp {
+  	position: absolute;
+  	bottom: 160px;
+  	left: 354px;
+  	width: 160px;
+  }
+
+  #removeExps {
+  	position: absolute;
+  	left: 27px;
+  	font-size: 32px;
+  	bottom: 88px;
+  }
+
+  #clearExps {
+  	position: absolute;
+  	left: 295px;
+  	font-size: 32px;
+  	bottom: 88px;
+  }
+
+  #back {
+  	font-size: 32px;
+  	position: absolute;
+  	left: 28px;
+  	bottom: 20px;
+  }
+
+  #exposureDesc {
+  	background-color: #00b1ca;
+		border:5px solid #1c4e89;
+		border-radius: 5px;
+  	position: relative;
+  	display: inline-block;
+  	z-index: 5;
+  	line-height: 0px;
+  	right: 115px;
+  	top: 15px;
+  	font-family: officeSquare;
+		font-size: 24px;
+		color: #f2ebda;
+		text-shadow: 3px 3px #f79256, 
+                    1px 1px 0 #f79256,
+                    1px -1px 0 #f79256,
+                    -1px -1px 0 #f79256;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  #numberDesc {
+  	background-color: #00b1ca;
+		border:5px solid #1c4e89;
+		border-radius: 5px;
+  	position: relative;
+  	display: inline-block;
+  	z-index: 5;
+  	line-height: 0px;
+  	left: 95px;
+  	top: 15px;
+  	font-family: officeSquare;
+		font-size: 24px;
+		color: #f2ebda;
+		text-shadow: 3px 3px #f79256, 
+                    1px 1px 0 #f79256,
+                    1px -1px 0 #f79256,
+                    -1px -1px 0 #f79256;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  #question {
+  	border-radius: 50px;
+  	position: absolute;
+  	padding-left: 12px;
+  	padding-right: 12px;
+  	left: 480px;
+  	top: 15px;
+  	font-size: 24px;
+  	margin-bottom: -50px;
+  	margin-right: -10px;
+  }
+
+  #question:hover + #questionText {
+  	display: block;
+  }
+
+  #questionText {
+  	position: absolute;
+  	z-index: 10;
+  	background-color: white;
+  	width: 400px;
+  	left: 100px;
+  	top: 75px;
+  }
+
+
+</style>
+	</head>
+
+
+<body>
+<div id="leftbar">
+
+	<button class="button" id="question">?</button>
+	<div id="questionText" class="hidden">
+		<p>An exposure is the main component of Exposure and Response Prevention Therapy. Your hierarchy is a list of all your exposures you'll be working on, listed from easiest to most challenging. It's recommended to start with level 3-4 exposures and continue doing them until the level 5-7 ones become easier and drop down to level 3-4. First enter the exposure in the exposure box, enter a rating from 1-7, and hit add exposure.</p>
+	</div>
+
+	<h1>Add Exposures</h1>
+	<div id="exposureDesc">
+		<p>Exposure:</p>
+	</div>
+	<div id="numberDesc">
+		<p>Rating 1-7:</p>
+	</div>
+	<form>
+    <textarea id="textInput" type=text></textarea>
+    <input id="numberInput" type=text></input>
+  </form>
+    <button class="button" type="button" id="addExp" onclick="addExp();">Add <br>Exposure</button>
+    <button class="button" id="removeExps">Remove Exposures</button>
+    <button class="button" id="clearExps" type="button" onclick="clearExps()">Clear Exposures</button>
+    <button class="button" id="back" onclick="parent.location='index.html'">Back</button>
+</div>
+
+<div id="paperBox">
+	<h1 id="hierarchy">Hierarchy</h1>
+	<div id="listBox" class="center">
+		<div id="one" class="ratingBox">
+			<h2 id="oneTitle" class="hidden">Level 1 Exposures:</h2>
+		</div>
+		<div id="two" class="ratingBox">
+			<h2 id="twoTitle" class="hidden">Level 2 Exposures:</h2>
+		</div>
+		<div id="three" class="ratingBox">
+			<h2 id="threeTitle" class="hidden">Level 3 Exposures:</h2>
+		</div>
+		<div id="four" class="ratingBox">
+			<h2 id="fourTitle" class="hidden">Level 4 Exposures:</h2>
+		</div>
+		<div id="five" class="ratingBox">
+			<h2 id="fiveTitle" class="hidden">Level 5 Exposures:</h2>
+		</div>
+		<div id="six" class="ratingBox">
+			<h2 id="sixTitle" class="hidden">Level 6 Exposures:</h2>
+		</div>
+		<div id="seven" class="ratingBox">
+			<h2 id="sevenTitle" class="hidden">Level 7 Exposures:</h2>
+		</div>
+	</div>
+</div>
+
+<script>
+
+	var expArray = JSON.parse(window.localStorage.getItem('expArrayJ')) || [];
+	var ones = JSON.parse(window.localStorage.getItem('onesJ')) || [];
+	var twos = JSON.parse(window.localStorage.getItem('twosJ')) || [];
+	var threes = JSON.parse(window.localStorage.getItem('threesJ')) || [];
+	var fours = JSON.parse(window.localStorage.getItem('foursJ')) || [];
+	var fives = JSON.parse(window.localStorage.getItem('fivesJ')) || [];
+	var sixes = JSON.parse(window.localStorage.getItem('sixesJ')) || [];
+	var sevens = JSON.parse(window.localStorage.getItem('sevensJ')) || [];
+
+
+	if (ones.length || twos.length || threes.length || fours.length || fives.length || sixes.length || sevens.length > 0) {
+	displayPreviousExps();
+
+	function addExp() {
+		var getTextArea = document.getElementById("textInput");
+		var getNumInput = document.getElementById("numberInput")
+  	var textValue = getTextArea.value;
+  	var inputValue = getNumInput.value;
+  	var one = document.getElementById("one");
+  	var two = document.getElementById("two");
+  	var three = document.getElementById("three");
+  	var four = document.getElementById("four");
+  	var five = document.getElementById("five");
+  	var six = document.getElementById("six");
+  	var seven = document.getElementById("seven");
+  	document.getElementById("textInput").value = "";
+  	document.getElementById("numberInput").value = "";
+
+  	switch(inputValue) {
+  		
+  		case "1":
+  		var oneContent = document.createElement("LI");
+			oneContent.appendChild(document.createTextNode(textValue));
+			one.appendChild(oneContent);
+			ones.push(textValue);
+			window.localStorage.setItem('onesJ', JSON.stringify(ones));
+  		break;
+
+  		case "2":
+  		var twoContent = document.createElement("LI");
+			twoContent.appendChild(document.createTextNode(textValue));
+			two.appendChild(twoContent);
+			twos.push(textValue);
+			window.localStorage.setItem('twosJ', JSON.stringify(twos));
+  		break;
+
+  		case "3":
+  		var threeContent = document.createElement("LI");
+			threeContent.appendChild(document.createTextNode(textValue));
+			three.appendChild(threeContent);
+			threes.push(textValue);
+			window.localStorage.setItem('threesJ', JSON.stringify(threes));
+  		break;
+
+  		case "4":
+  		var fourContent = document.createElement("LI");
+			fourContent.appendChild(document.createTextNode(textValue));
+			four.appendChild(fourContent);
+			fours.push(textValue);
+			window.localStorage.setItem('foursJ', JSON.stringify(fours));
+  		break;
+
+  		case "5":
+  		var fiveContent = document.createElement("LI");
+			fiveContent.appendChild(document.createTextNode(textValue));
+			five.appendChild(fiveContent);
+			fives.push(textValue)
+			window.localStorage.setItem('fivesJ', JSON.stringify(fives));
+  		break;
+
+  		case "6":
+  		var sixContent = document.createElement("LI");
+			sixContent.appendChild(document.createTextNode(textValue));
+			six.appendChild(sixContent);
+			sixes.push(textValue);
+			window.localStorage.setItem('sixesJ', JSON.stringify(sixes));
+  		break;
+
+  		case "7":
+  		var sevenContent = document.createElement("LI");
+			sevenContent.appendChild(document.createTextNode(textValue));
+			seven.appendChild(sevenContent);
+			sevens.push(textValue);
+			window.localStorage.setItem('sevensJ', JSON.stringify(sevens));
+  		break;
+
+  		default:
+  		alert("Please enter a number rating 1-7");
+  	}
+  };
+
+	document.getElementById("removeExps").addEventListener("click", removeExps);
+
+	function removeExps() {
+		var list = document.getElementsByTagName("LI");
+		var i;
+		var removeExps = document.getElementById("removeExps");
+		activateButtons();
+		for (i = 0; i < list.length; i++) {
+			var btn = document.getElementById("xbutton" + i)
+		  if (btn.classList.contains("hidden")) {
+		  	removeExps.innerHTML = "Done";
+		  	btn.classList.remove("hidden");
+		  } else {
+		  	removeExps.innerHTML = "Remove Exposures";
+		  	btn.classList.add("hidden");
+		  }
+		}
+	}
+
+
+	
+
+	function activateButtons() {
+		var xbuttons = document.getElementsByClassName("xbuttons");
+		var i;
+		for (i = 0; i < xbuttons.length; i++) {
+		  xbuttons[i].onclick = function() {
+		    var listItem = this.parentElement;
+		    const index = [listItem.children].indexOf(this);
+		    listItem.style.display = "none";
+
+		    if (document.getElementById("one").contains(this)) {
+		    	ones.splice(index, 1)
+		    }
+
+		    if (document.getElementById("two").contains(this)) {
+		    	twos.splice(index, 1)
+		    }
+
+		    if (document.getElementById("three").contains(this)) {
+		    	threes.splice(index, 1)
+		    }
+
+		    if (document.getElementById("four").contains(this)) {
+		    	fours.splice(index, 1)
+		    }
+
+		    if (document.getElementById("five").contains(this)) {
+		    	fives.splice(index, 1)
+		    }
+
+		    if (document.getElementById("six").contains(this)) {
+		    	sixes.splice(index, 1)
+		    }
+
+		    if (document.getElementById("seven").contains(this)) {
+		    	sevens.splice(index, 1)
+		    }
+
+	  		window.localStorage.setItem('onesJ', JSON.stringify(ones));
+	  		window.localStorage.setItem('twosJ', JSON.stringify(twos));
+	  		window.localStorage.setItem('threesJ', JSON.stringify(threes));
+	  		window.localStorage.setItem('foursJ', JSON.stringify(fours));
+	  		window.localStorage.setItem('fivesJ', JSON.stringify(fives));
+	  		window.localStorage.setItem('sixesJ', JSON.stringify(sixes));
+	  		window.localStorage.setItem('sevensJ', JSON.stringify(sevens));
+
+	  		if (ones == 0) {
+	  			document.getElementById("oneTitle").classList.add("hidden");
+	  		}
+
+	  		if (twos == 0) {
+	  			document.getElementById("twoTitle").classList.add("hidden");
+	  		}
+
+	  		if (threes == 0) {
+	  			document.getElementById("threeTitle").classList.add("hidden");
+	  		}
+
+	  		if (fours == 0) {
+	  			document.getElementById("fourTitle").classList.add("hidden");
+	  		}
+
+	  		if (fives == 0) {
+	  			document.getElementById("fiveTitle").classList.add("hidden");
+	  		}
+
+	  		if (sixes == 0) {
+	  			document.getElementById("sixTitle").classList.add("hidden");
+	  		}
+
+	  		if (sevens == 0) {
+	  			document.getElementById("sevenTitle").classList.add("hidden");
+	  		}
+			}
+		}
+	}
+
+
+
+
+
+	function displayPreviousExps() {
+		if (ones.length !== 0) {
+			var el = document.createElement("UL");
+			el.innerHTML ='<li>' + ones.join('</li><li>') + '</li>'
+			document.getElementById("one").appendChild(el);
+			document.getElementById("oneTitle").classList.remove("hidden");
+		}
+
+		if (twos.length !== 0) {
+			var el = document.createElement("UL");
+			el.innerHTML ='<li>' + twos.join('</li><li>') + '</li>'
+			document.getElementById("two").appendChild(el);
+			document.getElementById("twoTitle").classList.remove("hidden");
+		}
+
+		if (threes.length !== 0) {
+			var el = document.createElement("UL");
+			el.innerHTML ='<li>' + threes.join('</li><li>') + '</li>'
+			document.getElementById("three").appendChild(el);
+			document.getElementById("threeTitle").classList.remove("hidden");
+		}
+
+		if (fours.length !== 0) {
+			var el = document.createElement("UL");
+			el.innerHTML ='<li>' + fours.join('</li><li>') + '</li>'
+			document.getElementById("four").appendChild(el);
+			document.getElementById("fourTitle").classList.remove("hidden");
+		}
+
+		if (fives.length !== 0) {
+			var el = document.createElement("UL");
+			el.innerHTML ='<li>' + fives.join('</li><li>') + '</li>'
+			document.getElementById("five").appendChild(el);
+			document.getElementById("fiveTitle").classList.remove("hidden");
+		}
+
+		if (sixes.length !== 0) {
+			var el = document.createElement("UL");
+			el.innerHTML ='<li>' + sixes.join('</li><li>') + '</li>'
+			document.getElementById("six").appendChild(el);
+			document.getElementById("sixTitle").classList.remove("hidden");
+		}
+
+		if (sevens.length !== 0) {
+			var el = document.createElement("UL");
+			el.innerHTML ='<li>' + sevens.join('</li><li>') + '</li>'
+			document.getElementById("seven").appendChild(el);
+			document.getElementById("sevenTitle").classList.remove("hidden");
+		}
+	};
+
+    var list = document.getElementsByTagName("LI");
+		var i;
+		for (i = 0; i < list.length; i++) {
+		  var button = document.createElement("button");
+		  var x = document.createTextNode("\u00D7");
+		  button.appendChild(x);
+		  button.id = 'xbutton' + i;
+		  button.classList.add("button");
+		  button.classList.add("xbuttons");
+		  button.classList.add("hidden");
+		  button.style.width = "60px";
+		  button.style.height = "60px";
+		  button.style.transform = "scale(.7, .7)"
+		  button.style.borderRadius = "50px";
+		  button.style.margin = "-10px";
+		  list[i].appendChild(button);
+		}
+  };
+
+	function clearExps() {
+        localStorage.removeItem("onesJ")
+        localStorage.removeItem("twosJ")
+        localStorage.removeItem("threesJ")
+        localStorage.removeItem("foursJ")
+        localStorage.removeItem("fivesJ")
+        localStorage.removeItem("sixesJ")
+        localStorage.removeItem("sevensJ")
+        document.getElementById('listBox').innerHTML = "";
+        document.getElementById("textInput").value = "";
+        document.getElementById("numberInput").value = "";
+    }
+
+</script>
+
+
+</body>
+</html>

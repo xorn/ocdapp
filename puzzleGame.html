@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+    </script>
+    <style type="text/css">
+
+
+        body {
+        background-color: #7dcfb6;
+        }
+
+        html,body{
+        height:100%;
+        }
+
+        h1 {
+            font-family: officeSquare;
+            font-size: 90px;
+            margin: 0px;
+            text-shadow: 5px 5px #f79256, 
+                        1px 1px 0 #f79256,
+                        1px -1px 0 #f79256,
+                        -1px -1px 0 #f79256;
+            cursor: pointer;
+            color: #1c4e89;
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: -10px;
+        }
+
+        h2 {
+            font-family: officeSquare;
+            font-size: 32px;
+            color: #1c4e89;
+            text-shadow: 5px 5px #f79256, 
+                        1px 1px 0 #f79256,
+                        1px -1px 0 #f79256,
+                        -1px -1px 0 #f79256;
+            display: inline;
+            line-height: 50px;
+            margin-left: 10px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        p {
+        font-family: officeSquare;
+        font-size: 24px;
+        color: #1c4e89;
+        }
+
+        span {
+            font-family: officeSquare;
+        font-size: 24px;
+        color: #1c4e89;
+        vertical-align: middle;
+        }   
+
+        hr {
+            margin-top: 20px;
+            border: 3px solid #1c4e89;
+        }
+
+        a {
+            text-decoration: underline;
+        }    
+
+        input[type=file] {
+            font-family: officeSquare;
+            font-size: 24px;
+            color: #1c4e89;
+        }
+
+        input[type=button] {
+            padding: 5px 5px;
+            font-size: 24px;
+            font-family: officeSquare;
+            color: #f2ebda;
+            cursor: pointer;
+            text-align: center;
+            background-color: #f79256;
+            border: 4px solid #1c4e89;
+            border-radius: 10px;
+            box-shadow: 3px 7px #999;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        table {
+            table-layout: fixed;
+            border-spacing: 0px;
+            box-sizing: content-box;
+            border-collapse: separate;
+        }
+
+        td {
+            overflow: hidden;
+            box-sizing: content-box;
+        }
+
+        [type=checkbox] {
+				  width: 2rem;
+				  height: 2rem;
+				  color: #00b1ca;
+				  vertical-align: middle;
+				  -webkit-appearance: none;
+				  background: none;
+				  border: 0;
+				  outline: 4px solid #1c4e89;
+				  flex-grow: 0;
+				  border-radius: 5px;
+				  background-color: #FFFFFF;
+				  transition: background 300ms;
+				  cursor: pointer;
+				  margin-right: 10px;
+                  box-shadow: 8px 8px 4px #8a7258;
+				}
+
+        [type=checkbox]::before {
+			  content: "";
+			  color: transparent;
+			  display: block;
+			  width: inherit;
+			  height: inherit;
+			  border-radius: inherit;
+			  border: 0;
+			  background-color: transparent;
+			  background-size: contain;
+			  box-shadow: inset 0 0 0 1px #CCD3D8;
+			}
+
+
+			/* Checked */
+
+				[type=checkbox]:checked {
+				  background-color: currentcolor;
+				}
+
+				[type=checkbox]:checked::before {
+				  box-shadow: none;
+				  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
+				}
+        [type=radio] {
+                  width: 2rem;
+                  height: 2rem;
+                  color: #00b1ca;
+                  vertical-align: middle;
+                  -webkit-appearance: none;
+                  background: none;
+                  border: 0;
+                  outline: 4px solid #1c4e89;
+                  flex-grow: 0;
+                  border-radius: 50px;
+                  background-color: #FFFFFF;
+                  transition: background 300ms;
+                  cursor: pointer;
+                  margin-right: 10px;
+                  box-shadow: 6px 6px 4px #8a7258;
+
+                }
+
+        [type=radio]::before {
+              content: "";
+              color: transparent;
+              display: block;
+              width: inherit;
+              height: inherit;
+              border-radius: inherit;
+              border: 0;
+              background-color: transparent;
+              background-size: contain;
+              box-shadow: inset 0 0 0 1px #CCD3D8;
+            }
+
+
+            /* Checked */
+
+                [type=radio]:checked {
+                  background-color: currentcolor;
+                }
+
+                [type=radio]:checked::before {
+                  box-shadow: none;
+                  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
+                }
+
+        @font-face {
+                    font-family: officeSquare;
+                    src: url(assets/fonts/OfficeSquare-Ayvg.ttf);
+                }
+
+        .hidden {
+            display: none;
+        }
+
+        .totalCenter {     
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .centered {     
+            display: block;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            
+        }
+
+        .button {
+		    font-size: 32px;
+		    font-family: officeSquare;
+		    color: #f2ebda;
+		    cursor: pointer;
+		    text-align: center;
+		    background-color: #f79256;
+		    border: 4px solid #1c4e89;
+		    border-radius: 5px;
+		    box-shadow: 3px 7px #999;
+		    margin: 10px;
+		    width: 93%;
+        }
+
+        .smallScale {
+            transform: scale(.01, .01);
+        }
+
+        .scaleUp {
+            animation: scaleUp 2s ease-in-out;
+            animation-fill-mode: forwards; 
+        }
+
+        .button:hover {background-color: #00b1ca;}
+
+        .button:active,
+        .button-active {
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+
+        .tNHeader {
+            border: 4px solid #1c4e89;
+        }
+
+
+        @keyframes scaleUp {
+            0% {transform: scale(.01, .01)}
+            100% {transform: scale(1, 1); transform: translate(-30px, -30px)}
+        }
+
+        .fadeOut {
+            animation: fadeOut 1s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {opacity: 100%}
+            100% {opacity: 0%}
+        }
+
+        .fadeIn {
+            animation: fadeIn 1s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {opacity: 0%}
+            100% {opacity: 100%}
+        }
+
+        .scaleDown {
+            animation: scaleDown 2s ease-in-out;
+            animation-fill-mode: forwards; 
+        }
+
+        @keyframes scaleDown {
+            0% {transform: scale(1, 1); transform: translate(-30px, -30px)}
+            100% {transform: scale(.01, .01)}
+            
+        }
+
+        .videoText {
+            font-size: 46px;
+        }
+
+        .videoButton {
+            padding: 5px 5px;
+            box-shadow: 3px 7px #999;
+        }
+
+        .videoDiv {
+            padding: 45px;
+        }
+
+        .roundButton {
+            float: left;
+            font-size: 24px;
+            z-index: 10;
+            border-radius: 50px;
+            width: 48px;
+            height: 48px;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .slicedImages {
+            border: 3px solid black;
+            padding: 0px;
+            margin: 0px;
+            margin-bottom: -6px;
+            display: inline-block;
+            box-sizing: content-box;
+           /* display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;*/
+        }
+
+        .slicedImages:hover {
+            -moz-box-shadow: 0 0 30px 10px #ffe600;
+            -webkit-box-shadow: 0 0 30px 10px #ffe600;
+            box-shadow: 0 0 30px 10px #ffe600;
+            cursor: grabbing;
+        }
+
+        .dropZone {
+            flex-flow: row nowrap;
+            justify-content: space-between;
+        }
+
+        .outsideDrop {
+            flex-flow: row nowrap;
+            justify-content: space-between;
+        }
+
+        .hideDrag {
+            transition: transform 0.01s;
+            transform: translateX(-9999px);
+        }
+
+        #backButton:after {
+            content: '\21A9';
+        }
+
+        #backButton {
+            padding-top: 6px;
+            padding-left: 8px;
+            padding-right: 14px;
+        }
+
+        #questionText {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 100%;
+            height: 100%;
+            background-color: #fad1a2;
+            z-index: 5;
+            transform-origin: top left;
+        }
+ 
+
+        #leftContainer {
+            float: left; 
+            margin: 0px;
+            margin-left: -8px;
+            margin-top: -8px;
+            padding: 0px;
+            position: absolute;
+            height: 100%;
+            width: 336px;
+            background-color: #fad1a2;  
+            border-right:5px solid #1c4e89;
+  			border-right-style: dashed; 
+            z-index: 5;
+            box-shadow: 12px 15px 15px #5a9685;
+        }
+
+        #returnButton {
+            font-size: 72px;
+            padding: 5px 5px;
+            font-family: officeSquare;
+            color: #f2ebda;
+            cursor: pointer;
+            text-align: center;
+            background-color: #f79256;
+            border: 4px solid #1c4e89;
+            border-radius: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+        }
+
+        #textBox {
+            text-align: center;
+            height: 600px;
+            width: 1000px;
+        }
+
+        #videoButton {
+            font-size: 16px;
+            padding: 10px;
+            float: left;
+            width: 178px;
+        }
+
+        #start {
+            width: 100%;
+            height: 100%;
+            background-color: #fad1a2;
+            z-index: 10;
+            position: absolute;
+            text-align: center;
+        }
+
+        #finished {
+            width: 100%;
+            height: 100%;
+            background-color: #fad1a2;
+            z-index: 10;
+            position: absolute;
+            text-align: center;
+        }
+
+        #triggersButton {
+            z-index: 20;
+        }
+
+        #progress {
+            z-index: 0;
+        }
+
+        #videoTriggers {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 100%;
+            height: 100%;
+            background-color: #fad1a2;
+            z-index: 5;
+            transform-origin: top left;
+            background-color: #7dcfb6;
+        }
+
+        #tDiv {
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            width: 414px;
+            height: 706px;
+            margin: 7px;
+            color:#1c4e89;
+            background-color: #f2ebda;
+            border:5px solid #1c4e89;
+        }
+
+        #nDiv {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 414px;
+            height: 706px;
+            margin: 7px;
+            color:#1c4e89;
+            background-color: #f2ebda;
+            border:5px solid #1c4e89;
+
+
+        }
+
+        #paperBox {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 870px;
+            height: 740px;
+            margin: 7px;
+            color:#1c4e89;
+            background-color: #fad1a2;
+            border:5px solid #1c4e89;
+            border-style: dashed;
+        }
+
+        #tDivHeader {
+            line-height: 0px;
+            font-size: 46px;
+        }
+
+        #nDivHeader {
+            line-height: 0px;
+            font-size: 46px;
+        }
+
+        #returnButton2 {
+            position: absolute;
+            bottom: 10px;
+            left: 5px;
+            z-index: 5;
+        }
+
+        #expandButton {
+        	width: 50px;
+        	height: 50px;
+        	background-color: #fad1a2;
+        	border-radius: 8px;
+        	position: absolute;
+        	top: 0px;
+        	left: 330px;
+            border-bottom:5px solid #1c4e89;
+            border-bottom-style: dashed;
+            border-right:5px solid #1c4e89;
+            border-right-style: dashed;
+            text-align: center;
+            line-height: 38px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+            position: absolute;
+            box-shadow: 5px 10px 10px #5a9685;
+        }
+
+        #expandCarat {
+            font-family: "Comic Sans MS";
+            font-size: 72px;
+            margin: 0px;
+            margin-left: 4px;
+            -webkit-text-fill-color: #f79256;
+            -webkit-text-stroke-width: 5px;
+            -webkit-text-stroke-color: #1c4e89;
+
+        }
+
+        #errorDiv {
+        	position: absolute;
+        	width: 5px;
+        	height: 5px;
+        	background-color: #fad1a2;
+        	z-index: -5;
+        	left: 0px;
+        	top: 0px;
+        }
+
+        #image {
+            float: left;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: .2;
+            box-sizing: content-box;
+            margin: 0px;
+            padding: 0px;
+            border: none;
+        }
+
+        #puzzleBox {
+            position: fixed;
+            height: 100%;
+            top: 0px;
+            right: 0px;
+        }
+
+        #puzzleFrame {
+            /*border: 5px solid black;*/
+            position: absolute;
+            display: grid;
+            border-collapse: collapse;
+        }
+
+        #xButton {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            font-size: 54px;
+            line-height: 20px;
+            padding-left: 11px;
+            padding-right: 14px;
+        }
+
+        #question {
+            padding-left: 14px;
+            padding-right: 14px;
+        }
+
+        .tilt-in-fwd-tl {
+            -webkit-animation: tilt-in-fwd-tl 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: tilt-in-fwd-tl 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        @-webkit-keyframes tilt-in-fwd-tl {
+          0% {
+            -webkit-transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+                    transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+            opacity: 0;
+          }
+          100% {
+            -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+                    transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+            opacity: 1;
+          }
+        }
+        @keyframes tilt-in-fwd-tl {
+          0% {
+            -webkit-transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+                    transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+            opacity: 0;
+          }
+          100% {
+            -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+                    transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+            opacity: 1;
+          }
+        }
+
+        .tilt-back-fwd-tl {
+             -webkit-animation: tilt-back-fwd-tl 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) reverse both;
+            animation: tilt-back-fwd-tl 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) reverse both;
+        }
+
+        @-webkit-keyframes tilt-back-fwd-tl {
+          0% {
+            -webkit-transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+                    transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+            opacity: 0;
+          }
+          100% {
+            -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+                    transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+            opacity: 1;
+          }
+        }
+        @keyframes tilt-back-fwd-tl {
+          0% {
+            -webkit-transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+                    transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+            opacity: 0;
+          }
+          100% {
+            -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+                    transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+            opacity: 1;
+          }
+        }
+
+
+
+        .popup {
+            width: 40vw;
+            height: 65vh;
+            background-color: #fad1a2;  
+            border:5px solid #1c4e89;
+            border-style: dashed; 
+            z-index: 5;
+            position: absolute;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 12px 15px 15px #416b5f;
+       }
+
+
+
+
+
+    </style>
+</head>
+
+
+<body>
+
+<audio id="hoverNoise" src="assets/audio/hover.wav"></audio>
+<audio id="clickNoise" src="assets/audio/click.mp3"></audio>
+
+<div id="questionText" class="smallScale hidden">
+    <div id="textBox" class="centered">
+        <h1>How to Play</h1>
+        <h2>
+            1. Keep your eyes on the &#43;.<br>
+            2. A trigger will appear. Keep looking at the &#43;.<br>
+            3. Once the trigger is done presenting itself, either an E or an F will appear either above or below the +. Type the correct letter that matches the letter shown.<br>
+            4. The round will continue 200 times. Once done, congratulate yourself!</h2>
+    </div>
+    <button id="returnButton" class="button" onclick="hideInstructions();">Return</button>
+</div>
+
+<div id="videoTriggers" class="smallScale hidden">
+    <div id="leftbar">
+        <div id="textBox2">
+            <div class="videoDiv">
+                <h2 class="videoText">Trigger Videos</h2>
+                <div align="right"><input id="tVideoInput" type="file" accept="video/*" multiple="false" value="Select Video"></div>
+                <input type="button" id="tVideoButton" value="Add Video File">
+                <button class="button videoButton" onclick="removeTVideo();">Clear</button>
+
+            </div>
+
+            <hr>
+
+            <div class="videoDiv">
+                <h2 class="videoText">Neutral Videos</h2>
+                <div align="right"><input id="nVideoInput" type="file" accept="video/*" multiple="false" value="Select Video"></div>
+                <input type="button" id="nVideoButton" value="Add Video File">
+                <button class="button videoButton" onclick="removeNVideo();">Clear</button>
+            </div>
+        </div>
+        <hr>
+        <button id="returnButton2" class="button videoButton" onclick="hideVideos();">Return</button>
+    </div>
+
+    <div id="paperBox">
+        <div id="tDiv">
+            <h2 class="tNHeader" id="tDivHeader">Trigger Videos</h2>
+            <div id="tVideoDiv">
+            </div>
+        </div>
+
+        <div id="nDiv">
+            <h2 class="tNHeader" id="nDivHeader">Neutral Videos</h2>
+            <div id="nVideoDiv">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="expandButton" onclick="showHideSide();">
+	<p id="expandCarat">&#8249;</p>
+</div>
+
+<div id="leftContainer">
+    <button class="button roundButton" onclick="showInstructions();" id="question">?</button>
+    <button class="button roundButton" onclick="parent.location='index.html'" id="backButton"></button>
+    <button class="button" id="videoButton" onclick="showVideos();">Insert Video Triggers</button>
+    <button class="button" onclick="startPuzzle();" >Start a puzzle!</button>
+    <button class="button">Next puzzle</button>
+    <button class="button" id="difficulty" value="diffSettings" onclick="showPopup(this.value);">Puzzle Difficulty</button>
+    <button class="button">Timer</button>
+    <button class="button">Restart Puzzle</button>
+    <button class="button">Hint</button>
+    <h2><input type="checkbox" class="puzzleCb" id="randomize" value="puzzleCb" onclick="checkSwitch(this, this.value); checkBoxStatusFinder(); refreshPage();" checked>  Randomize Puzzles</h2>
+    <h2><input type="checkbox" class="puzzleCb"id="select" value="puzzleCb" onclick="checkSwitch(this, this.value); checkBoxStatusFinder();">  Choose Puzzles</h2>
+</div>
+
+<div id="puzzleBox">
+
+    <div class="popup hidden" id="diffSettings" >
+        <button class="roundButton button" id="xButton" value="diffSettings" onclick="hidePopup(this.value);">&#215;</button>
+
+        <h1>Difficulty Settings</h1>
+        <br>
+        <input type="hidden" name="checkbox_1" value="0">
+        <h2><input type="checkbox" class="difficultyCb" id="easy" value="difficultyCb" onclick="checkSwitch(this, this.value); switchDifficulty(this);">  Easy</h2>
+        <br>
+        <h2><input type="checkbox" class="difficultyCb" id="medium" value="difficultyCb" onclick="checkSwitch(this, this.value); switchDifficulty(this);" checked>  Medium</h2>
+        <br>
+        <h2><input type="checkbox" class="difficultyCb" id="hard" value="difficultyCb" onclick="checkSwitch(this, this.value); switchDifficulty(this);">  Hard</h2>
+        <br>
+        <h2><input type="checkbox" class="difficultyCb" id="veryHard" value="difficultyCb" onclick="checkSwitch(this, this.value); switchDifficulty(this);">  Very Hard</h2>
+        <br>
+        <h2>Rotation:</h2><input type="radio" onclick="checkSwitch(this);"><span>On  </span>
+        <input type="radio" onclick="checkSwitch(this);"><span>Off</span>
+
+    </div>
+
+    <img id="image">
+
+    <div id="puzzlePieces">
+    </div>
+</div>
+
+<div id="errorDiv"></div>
+
+
+<script src="puzzleGameJS.js" defer>
+
+</script>
+
+
+
+</body>
+</html>

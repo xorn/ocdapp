@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+</script>
+<style type="text/css">
+
+	body {
+  	background-color: #7dcfb6;
+	}
+
+	h1 {
+		font-family: officeSquare;
+		font-size: 144px;
+		margin: 15px;
+		text-shadow: 5px 5px #f79256, 
+                    1px 1px 0 #f79256,
+                    1px -1px 0 #f79256,
+                    -1px -1px 0 #f79256;
+        cursor: pointer;
+        color: #1c4e89;
+	}
+
+	h2 {
+		font-family: officeSquare;
+		font-size: 42px;
+		color: #1c4e89;
+		text-shadow: 5px 5px #f79256, 
+                    1px 1px 0 #f79256,
+                    1px -1px 0 #f79256,
+                    -1px -1px 0 #f79256;
+
+	}
+
+	a {
+		font-family: officeSquare;
+		font-size: 24px;
+		color: #fad1a2;
+	}
+
+	p {
+		font-family: officeSquare;
+		font-size: 24px;
+		color: #1c4e89;
+	}
+
+	textarea {
+		width: 500px;
+		height: 100px;
+		margin: 5px;
+		background-color: #f2ebda;
+		border: 4px solid #1c4e89;
+    border-radius: 5px;
+    color:#1c4e89;
+    font-family: officeSquare;
+    font-size: 24px;
+    resize: none;
+	}
+
+	ul {
+    margin: 0px;
+	}
+
+	@font-face {
+			font-family: officeSquare;
+			src: url(assets/fonts/OfficeSquare-Ayvg.ttf);
+		}
+
+	.button {
+	  padding: 5px 5px;
+      font-size: 36px;
+      font-family: officeSquare;
+      color: #f2ebda;
+      cursor: pointer;
+      text-align: center;
+      background-color: #f79256;
+      border: 4px solid #1c4e89;
+      border-radius: 5px;
+      box-shadow: 3px 7px #999;
+      margin: 5px;
+	}
+
+	.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.button:hover {background-color: #00b1ca;}
+
+  .button:active {
+  background-color: #00b1ca;
+  box-shadow: 2px 2px #999;
+  transform: translate(4px, 4px);
+  } 
+
+	#leftbar {
+		background-color: #fad1a2;
+		border:5px solid #1c4e89;
+  	border-style: dashed;
+  	width: 525px;
+  	height: 740px;
+  	text-align: center;
+  	box-shadow: 12px 15px 15px #416b5f;
+  }
+
+  #paperBox {
+  	position: absolute;
+  	right: 0px;
+  	top: 0px;
+  	/*border: 5px solid black;*/
+  	width: 875px;
+  	height: 740px;
+  	margin: 7px;
+  }
+
+  #note {
+  	z-index: -2px;
+  	position: relative;
+  	width: 695px;
+  	transform: rotate(3deg);
+  }
+
+  #listBox {
+  	overflow:auto;
+  	position: absolute;
+  	right: 130px;
+  	top: 100px;
+  	width: 600px;
+  	height: 560px;
+  	margin: 7px;
+  	z-index: 5px;
+  	color:#1c4e89;
+    font-family: officeSquare;
+    font-size: 42px;
+  }
+
+  #removeFears {
+  	position: absolute;
+  	bottom: 22px;
+  	left: 305px;
+  }
+
+  #question {
+  	border-radius: 50px;
+  	position: relative;
+  	padding-left: 12px;
+  	padding-right: 12px;
+  	left: 225px;
+  	font-size: 24px;
+  	margin-bottom: -50px;
+  	margin-right: -10px;
+  }
+
+  #question:hover + #questionText {
+  	display: block;
+  }
+
+  #questionText {
+  	position: absolute;
+  	z-index: 10;
+  	background-color: white;
+  	width: 300px;
+  	left: 180px;
+  	top: 75px;
+  }
+
+</style>
+	</head>
+
+
+<body>
+<div id="leftbar">
+
+	<button class="button" id="question">?</button>
+	<div id="questionText" class="hidden">
+		<p>A fear is something that causes you to have anxiety. It is the root of a trigger. Use this to identify your OCD fears, create new exposures, and tell your loved ones of your triggers.</p>
+	</div>
+
+	<h1>Fear List</h1>
+	<form>
+    <textarea id="textInput" type=text></textarea>
+  </form>
+    <button class="button" type="button" id="addButton" onclick="addFear(); displayPreviousFears();">Add Fear</button>
+    <button class="button" type="button" onclick="clearFears();">Clear Fears</button>
+    <button class="button" onclick="parent.location='index.html'">Back</button>
+    <button class="button" id="removeFears">Remove Fears</button>
+</div>
+
+<div id="paperBox">
+		<img id="note" class="center" src="assets/images/listBackground.png">
+</div>
+
+<div id="listBox">
+</div>
+
+<script>
+
+	var fearArray = JSON.parse(window.localStorage.getItem('fearArrayJ')) || [];
+
+	if (fearArray.length > 0) {
+	displayPreviousFears();
+	}
+
+	function addFear(){
+		var getTextArea = document.getElementById("textInput");
+  	var value = getTextArea.value;
+  	fearArray.push(value);
+  	window.localStorage.setItem('fearArrayJ', JSON.stringify(fearArray));
+  	document.getElementById("textInput").value = "";
+  };
+  
+
+	document.getElementById("removeFears").addEventListener("click", removeFears);
+
+	function removeFears() {
+		var list = document.getElementsByTagName("LI");
+		var i;
+		var removeFears = document.getElementById("removeFears");
+		activateButtons();
+		for (i = 0; i < list.length; i++) {
+			var btn = document.getElementById("xbutton" + i)
+		  if (btn.classList.contains("hidden")) {
+		  	removeFears.innerHTML = "Done";
+		  	btn.classList.remove("hidden");
+		  } else {
+		  	removeFears.innerHTML = "Remove Fears";
+		  	btn.classList.add("hidden");
+		  }
+		}
+	}
+
+
+	
+
+	function activateButtons() {
+		var xbuttons = document.getElementsByClassName("xbuttons");
+		var i;
+		for (i = 0; i < fearArray.length; i++) {
+		  xbuttons[i].onclick = function() {
+		    var listItem = this.parentElement;
+		    listItem.style.display = "none";
+		    var index = fearArray.indexOf(fearArray[i]);
+	  		fearArray.splice(index, 1)
+	  		window.localStorage.setItem('fearArrayJ', JSON.stringify(fearArray));
+			}
+		}
+	}
+
+
+
+
+	function displayPreviousFears() {
+    document.getElementById('listBox').innerHTML ='<ul> <li>' + fearArray.join('</li><li>') + '</li> </ul>'
+    var list = document.getElementsByTagName("LI");
+		var i;
+		for (i = 0; i < list.length; i++) {
+	  var button = document.createElement("button");
+	  var x = document.createTextNode("\u00D7");
+	  button.appendChild(x);
+	  button.id = 'xbutton' + i;
+	  button.classList.add("button");
+	  button.classList.add("xbuttons");
+	  button.classList.add("hidden");
+	  button.style.width = "60px";
+	  button.style.height = "60px";
+	  button.style.transform = "scale(.7, .7)"
+	  button.style.borderRadius = "50px";
+	  button.style.margin = "-10px";
+	  list[i].appendChild(button);
+		}
+  };
+
+	function clearFears() {
+        localStorage.removeItem("fearArrayJ");
+        fearArray = [];
+        document.getElementById('listBox').innerHTML = "";
+        document.getElementById("textInput").value = "";
+    }
+
+</script>
+
+
+</body>
+</html>

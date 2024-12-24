@@ -1,0 +1,187 @@
+body {
+    background-color: #7dcfb6;
+}
+
+h1 {
+    font-family: officeSquare;
+    font-size: 100px;
+    margin: 10px;
+    text-shadow: 5px 5px #f79256, 
+                1px 1px 0 #f79256,
+                1px -1px 0 #f79256,
+                -1px -1px 0 #f79256;
+    cursor: pointer;
+    color: #1c4e89;
+}
+
+h2 {
+    font-family: officeSquare;
+    font-size: 42px;
+    color: #1c4e89;
+    text-shadow: 5px 5px #f79256, 
+                1px 1px 0 #f79256,
+                1px -1px 0 #f79256,
+                -1px -1px 0 #f79256;
+
+}
+
+a {
+    font-family: officeSquare;
+    font-size: 24px;
+    color: #fad1a2;
+}
+
+p {
+    font-family: officeSquare;
+    font-size: 24px;
+    margin: 2px;
+}
+
+input {
+    background-color: white;
+    color:#1c4e89;
+    font-family: officeSquare;
+    font-size: 26px;
+    width: 97px;
+    box-shadow: inset 2px 4px 4px #999;
+}
+
+ul {
+    margin: 0px;
+}
+
+table {
+    width: 300px;
+    border:5px solid #1c4e89;
+    margin: 5px;
+    background-color: white;
+    font-family: officeSquare;
+    font-size: 26px;
+    color: #1c4e89;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    box-shadow: 2px 4px 4px #416b5f;
+}
+
+td {
+    border: 1px solid #1c4e89;
+    padding: 5px;
+    color: #f79256;
+    text-align: center;
+}
+
+span {
+    color: #1c4e89;
+    box-shadow: inset 1px 2px 2px #999;
+}
+
+@font-face {
+        font-family: officeSquare;
+        src: url(assets/fonts/OfficeSquare-Ayvg.ttf);
+}
+
+.button {
+    padding: 5px 5px;
+    font-size: 32px;
+    font-family: officeSquare;
+    color: #f2ebda;
+    cursor: pointer;
+    text-align: center;
+    background-color: #f79256;
+    border: 4px solid #1c4e89;
+    border-radius: 5px;
+    box-shadow: 3px 7px #999;
+    margin: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 96%;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.hidden {
+    display: none;
+}
+
+.button:hover {background-color: #00b1ca;}
+
+.button:active {
+    background-color: #00b1ca;
+    box-shadow: 2px 2px #999;
+    transform: translate(4px, 4px);
+}
+
+.roundButton {
+    float: left;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 24px;
+    z-index: 10;
+    border-radius: 50px;
+    width: auto;
+}
+
+#back:after {
+    content: '\21A9';
+}
+
+#back {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#leftbar {
+    background-color: #fad1a2;
+    border:5px solid #1c4e89;
+    border-style: dashed;
+    width: 270px;
+    height: 600px;
+    box-shadow: 2px 4px 4px #416b5f;
+    z-index: 10;
+}
+
+#question {
+    float: right;
+}
+
+#question:hover + #questionText {
+    display: block;
+}
+
+#questionText {
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+    width: 400px;
+    left: 100px;
+    top: 75px;
+}
+
+#titleBar {
+    background-color: #fad1a2;
+    border:5px solid #1c4e89;
+    border-style: dashed;
+    margin-bottom: -5px;
+    box-shadow: 2px 4px 4px #416b5f;
+}
+
+#mainBar {
+    width: 1140px;
+    height: 600px;
+    background-color: #7dcfb6;
+    border:5px solid #1c4e89;
+    border-style: dashed;
+    position: absolute;
+    bottom: 6px;
+    right: 8px;
+    border-top: none;
+    border-left: none;
+    overflow: scroll;
+    box-shadow: inset 2px 4px 4px #416b5f;
+}

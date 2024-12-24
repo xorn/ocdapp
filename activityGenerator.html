@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+</script>
+<style type="text/css">
+
+	body {
+  	background-color: #7dcfb6;
+	}
+
+	h1 {
+		font-family: officeSquare;
+		font-size: 100px;
+		margin: 15px;
+		text-shadow: 5px 5px #f79256, 
+                    1px 1px 0 #f79256,
+                    1px -1px 0 #f79256,
+                    -1px -1px 0 #f79256;
+        cursor: pointer;
+        color: #1c4e89;
+	}
+
+	h2 {
+		font-family: officeSquare;
+		font-size: 42px;
+		color: #1c4e89;
+		text-shadow: 5px 5px #f79256, 
+                    1px 1px 0 #f79256,
+                    1px -1px 0 #f79256,
+                    -1px -1px 0 #f79256;
+
+	}
+
+	a {
+		font-family: officeSquare;
+		font-size: 24px;
+		color: #fad1a2;
+	}
+
+	p {
+		font-family: officeSquare;
+		font-size: 24px;
+		color: #1c4e89;
+	}
+
+	li {
+		font-family: officeSquare;
+		font-size: 20px;
+		color: #1c4e89;
+	}
+
+	textarea {
+		width: 500px;
+		height: 100px;
+		margin: 5px;
+		background-color: #f2ebda;
+		border: 4px solid #1c4e89;
+    border-radius: 5px;
+    color:#1c4e89;
+    font-family: officeSquare;
+    font-size: 24px;
+    resize: none;
+	}
+
+	ul {
+    margin: 0px;
+	}
+
+	@font-face {
+			font-family: officeSquare;
+			src: url(assets/fonts/OfficeSquare-Ayvg.ttf);
+		}
+
+	.button {
+	  padding: 5px 5px;
+      font-size: 24px;
+      font-family: officeSquare;
+      color: #f2ebda;
+      cursor: pointer;
+      text-align: center;
+      background-color: #f79256;
+      border: 4px solid #1c4e89;
+      border-radius: 5px;
+      box-shadow: 3px 7px #999;
+      margin: 5px;
+	}
+
+	.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.button:hover {background-color: #00b1ca;}
+
+  .button:active {
+  background-color: #00b1ca;
+  box-shadow: 2px 2px #999;
+  transform: translate(4px, 4px);
+  } 
+
+  .rotate {
+  	animation: rotation 5s ease-in-out;
+  	animation-fill-mode: forwards; 
+  }
+
+  .smallScale {
+  	transform: scale(.1, .1);
+  }
+
+  .scaleUp {
+  	animation: scaleUp 2s ease-in-out;
+  	animation-fill-mode: forwards; 
+  }
+
+  @keyframes scaleUp {
+  	0% {transform: scale(.1, .1)}
+  	100% {transform: scale(1, 1)}
+  }
+
+  @keyframes rotation {
+  25%  {transform: rotate(-90deg);}
+  50%  {transform: rotate(15deg) }
+  100% {transform: translate(600px, -600px)}
+	}
+
+	#leftbar {
+		background-color: #fad1a2;
+		border:5px solid #1c4e89;
+  	border-style: dashed;
+  	width: 525px;
+  	height: 740px;
+  	text-align: center;
+  	overflow: scroll;
+  }
+
+  #note {
+  	z-index: -2px;
+  	position: relative;
+  	width: 695px;
+  	transform: rotate(3deg);
+  }
+
+  #listBox {
+  	overflow:auto;
+  	text-align: left;
+  	width: 500px;
+  	height: 300px;
+  	margin: 7px;
+  	z-index: 5px;
+  	color:#1c4e89;
+    font-family: officeSquare;
+    font-size: 42px;
+    background-color: #f2ebda;
+		border: 4px solid #1c4e89;
+    border-radius: 5px;
+  }
+
+  #question {
+  	border-radius: 50px;
+  	position: relative;
+  	padding-left: 12px;
+  	padding-right: 12px;
+  	left: 225px;
+  	font-size: 24px;
+  	margin-bottom: -50px;
+  	margin-right: -10px;
+  }
+
+  #question:hover + #questionText {
+  	display: block;
+  }
+
+  #questionText {
+  	position: absolute;
+  	z-index: 10;
+  	background-color: white;
+  	width: 300px;
+  	left: 180px;
+  	top: 75px;
+  }
+
+  #magicWand {
+  	width: 1px;
+  	position: absolute;
+  	right: 150px;
+  	top: 100px;
+  }
+
+  #start {
+  	border-radius: 1000px;
+  	font-size: 48px;
+  	height: 200px;
+  	width: 200px;
+  	margin: 50px;
+  	box-shadow: 10px 20px #999;
+  }
+
+  #start:active {
+  	background-color: #00b1ca;
+  	box-shadow: 1px 2px #999;
+  	transform: translate(10px, 10px);
+  }
+
+  #prompt {
+  	position: relative;
+  	top: 150px;
+  }
+
+  #randomDiv {
+  	position: relative;
+  	height: auto;
+  	background-color: #fad1a2;
+		border:5px solid #1c4e89;
+  	border-style: dashed;
+  	text-align: center;
+  	padding: 10px;
+  	margin-top: 200px;
+  }
+
+  #rightbar {
+  	position: absolute;
+  	right: 0px;
+  	top: 0px;
+  	width: 870px;
+  	height: 740px;
+  	margin: 7px;
+  }
+
+</style>
+	</head>
+
+
+<body>
+<div id="leftbar">
+
+	<button class="button" id="question">?</button>
+	<div id="questionText" class="hidden">
+		<p>A helpful tool to stop rumination or urges. When you recognize that you have urges or are ruminating, use this to figure out what to do instead.</p>
+	</div>
+
+	<h1>Magic Wand</h1>
+	<form>
+    <textarea id="textInput" type=text></textarea>
+  </form>
+    <button class="button" type="button" id="addButton" onclick="addActivity(); displayPreviousActivities();">Add Activity</button>
+    <button class="button" type="button" onclick="clearActivities();">Clear Activities</button>
+    <button class="button" onclick="parent.location='index.html'">Back</button>
+    <button class="button" id="showActivities" onclick="showActivities();">Show Activities</button>
+    <button class="button" id="removeActivities">Remove Activity</button>
+    <div id="listBox" class="hidden">
+		</div>
+		<button class="button" onclick="generate();" id="start">What should I do?</button>
+</div>
+<div id="rightbar">
+	<h2 id="prompt" class="center">If I didn't have OCD, I'd be...</h2>
+	<div id="randomDiv" class="center smallScale hidden">
+		<h2 id="activity"></h2>
+	</div>
+	<img id="magicWand" src="assets/images/magicWand.png">
+</div>
+<script>
+
+	var activities = JSON.parse(window.localStorage.getItem('activitiesJ')) || [];
+
+	if (activities.length > 0) {
+	displayPreviousActivities();
+	}
+
+	function addActivity(){
+		var getTextArea = document.getElementById("textInput");
+  	var value = getTextArea.value;
+  	activities.push(value);
+  	window.localStorage.setItem('activitiesJ', JSON.stringify(activities));
+  	document.getElementById("textInput").value = "";
+  };
+  
+
+	document.getElementById("removeActivities").addEventListener("click", removeActivities);
+
+	function removeActivities() {
+		var list = document.getElementsByTagName("LI");
+		var div = document.getElementById("listBox")
+		var i;
+		var removeActivities = document.getElementById("removeActivities");
+		activateButtons();
+		if (div.classList.contains("hidden")) {
+		  	showActivities();
+		  } else {
+		  }
+
+		for (i = 0; i < list.length; i++) {
+			var btn = document.getElementById("xbutton" + i)
+		  if (btn.classList.contains("hidden")) {
+		  	removeActivities.innerHTML = "Done";
+		  	btn.classList.remove("hidden");
+		  } else {
+		  	removeActivities.innerHTML = "Remove Activities";
+		  	btn.classList.add("hidden");
+		  	showActivities();
+		  }
+		}
+	}
+
+
+	
+
+	function activateButtons() {
+		var xbuttons = document.getElementsByClassName("xbuttons");
+		var i;
+		for (i = 0; i < activities.length; i++) {
+		  xbuttons[i].onclick = function() {
+		    var listItem = this.parentElement;
+		    listItem.style.display = "none";
+		    var index = activities.indexOf(activities[i]);
+	  		activities.splice(index, 1)
+	  		window.localStorage.setItem('activitiesJ', JSON.stringify(activities));
+			}
+		}
+	}
+
+
+
+	function displayPreviousActivities() {
+    document.getElementById('listBox').innerHTML ='<ul> <li>' + activities.join('</li><li>') + '</li> </ul>'
+    var list = document.getElementsByTagName("LI");
+		var i;
+		for (i = 0; i < list.length; i++) {
+	  var button = document.createElement("button");
+	  var x = document.createTextNode("\u00D7");
+	  button.appendChild(x);
+	  button.id = 'xbutton' + i;
+	  button.classList.add("button");
+	  button.classList.add("xbuttons");
+	  button.classList.add("hidden");
+	  button.style.width = "60px";
+	  button.style.height = "60px";
+	  button.style.transform = "scale(.7, .7)"
+	  button.style.borderRadius = "50px";
+	  button.style.margin = "-10px";
+	  list[i].appendChild(button);
+		}
+  };
+
+	function clearActivities() {
+        localStorage.removeItem("activitiesJ");
+        activities = [];
+        document.getElementById('listBox').innerHTML = "";
+        document.getElementById("textInput").value = "";
+    }
+
+  function showActivities() {
+  	var list = document.getElementById("listBox");
+  	var showActivities = document.getElementById("showActivities");
+  	if (list.classList.contains("hidden")) {
+		  	list.classList.remove("hidden");
+		  	showActivities.innerHTML = "Hide Activities";
+		  } else {
+		  	list.classList.add("hidden");
+		  	showActivities.innerHTML = "Show Activities";
+		  }
+	} 
+
+	function generate() {
+		document.getElementById("activity").innerHTML = activities[Math.floor(Math.random() * activities.length)];
+		$(document).ready(function(){
+			$("#start").click(function(){
+	  		$("#magicWand").animate({right: '+=50px', width:"40%"}, 2000, "swing", function(){
+	  			$("#magicWand").toggleClass('rotate')
+	  		});
+			});
+		});
+		setTimeout(function() {
+			document.getElementById("randomDiv").classList.remove("hidden"); 
+			document.getElementById("randomDiv").classList.remove("smallScale");   
+	    document.getElementById("randomDiv").classList.add("scaleUp");   
+    }, 4500);
+	}
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+    </script>
+    <style type="text/css">
+
+        body {
+        background-color: #7dcfb6;
+        }
+
+        h1 {
+            font-family: officeSquare;
+            font-size: 54px;
+            margin: 0px;
+            text-shadow: 5px 5px #f79256, 
+                        1px 1px 0 #f79256,
+                        1px -1px 0 #f79256,
+                        -1px -1px 0 #f79256;
+            cursor: pointer;
+            color: #1c4e89;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: officeSquare;
+            font-size: 26px;
+            margin: 0px;
+            color: #1c4e89;
+            text-shadow: 5px 5px #f79256, 
+                        1px 1px 0 #f79256,
+                        1px -1px 0 #f79256,
+                        -1px -1px 0 #f79256;
+            line-height: 200%;
+
+        }
+
+        p {
+        font-family: officeSquare;
+        font-size: 24px;
+        color: #1c4e89;
+        }   
+
+        hr {
+            margin-top: 20px;
+            border: 3px solid #1c4e89;
+        }
+
+        a {
+            text-decoration: underline;
+        }    
+
+        input[type=file] {
+            font-family: officeSquare;
+            font-size: 24px;
+            color: #1c4e89;
+        }
+
+        input[type=button] {
+            padding: 5px 5px;
+            font-size: 24px;
+            font-family: officeSquare;
+            color: #f2ebda;
+            cursor: pointer;
+            text-align: center;
+            background-color: #f79256;
+            border: 4px solid #1c4e89;
+            border-radius: 10px;
+            box-shadow: 3px 7px #999;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        @font-face {
+                    font-family: officeSquare;
+                    src: url(assets/fonts/OfficeSquare-Ayvg.ttf);
+                }
+
+        .hidden {
+            display: none;
+        }
+
+        .totalCenter {     
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .centered {     
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        .totalCenter {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        }
+
+        .button {
+            font-size: 24px;
+            font-family: officeSquare;
+            color: #f2ebda;
+            cursor: pointer;
+            text-align: center;
+            background-color: #f79256;
+            border: 4px solid #1c4e89;
+            border-radius: 10px;
+            padding-left: 50px;
+            padding-right: 50px;
+            box-shadow: 7px 15px #999;
+            margin: 20px;
+        }
+
+        .smallScale {
+            transform: scale(.01, .01);
+        }
+
+        .scaleUp {
+            animation: scaleUp 2s ease-in-out;
+            animation-fill-mode: forwards; 
+        }
+
+        .button:hover {background-color: #00b1ca;}
+
+        .button:active,
+        .button-active {
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+
+        .tNHeader {
+            border: 4px solid #1c4e89;
+        }
+
+
+        @keyframes scaleUp {
+            0% {transform: scale(.01, .01)}
+            100% {transform: scale(1, 1); transform: translate(-30px, -30px)}
+        }
+
+        .fadeOut {
+            animation: fadeOut 1s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeOut {
+            0% {opacity: 100%}
+            100% {opacity: 0%}
+        }
+
+        .fadeIn {
+            animation: fadeIn 1s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {opacity: 0%}
+            100% {opacity: 100%}
+        }
+
+        .scaleDown {
+            animation: scaleDown 2s ease-in-out;
+            animation-fill-mode: forwards; 
+        }
+
+        @keyframes scaleDown {
+            0% {transform: scale(1, 1); transform: translate(-30px, -30px)}
+            100% {transform: scale(.01, .01)}
+            
+        }
+
+        .videoText {
+            font-size: 46px;
+        }
+
+        .videoButton {
+            padding: 5px 5px;
+            box-shadow: 3px 7px #999;
+        }
+
+        .videoDiv {
+            padding: 45px;
+        }
+
+        #question {
+            position: absolute;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 24px;
+            z-index: 10;
+            border-radius: 50px;
+        }
+
+        #game {
+            border: 4px solid #1c4e89;
+            position:fixed;
+            width: 762px;
+            height:100%;
+            background-color: white;
+            display: table;
+            text-align: center;
+            z-index: 15px;
+            box-shadow: inset 12px 0px 15px #999;
+        }
+
+       
+        #e {
+            margin: auto;
+            position: relative;
+            top: 500px;
+            font-size: 144px;
+            border-radius: 100px;
+            
+        }
+
+        #f {
+            margin: auto;
+            position: relative;
+            top: 500px;
+            font-size: 144px;
+            border-radius: 100px;
+        }
+
+        #e:active {
+            background-color: #00b1ca;
+            box-shadow: 2px 2px #999;
+            transform: translate(4px, 4px);
+        }
+
+        #f:active {
+            background-color: #00b1ca;
+            box-shadow: 2px 2px #999;
+            transform: translate(4px, 4px);
+        }
+
+        #eContainer {
+            position: absolute;
+            height: 100%;
+            width: 336px;
+            left: 0px;
+            top: 0px; 
+            border-right: 4px solid #1c4e89;;  
+        }
+
+        #fContainer {
+            position: absolute;
+            height: 100%;
+            width: 336px;
+            right: 0px;
+            top: 0px;
+            z-index: 5; 
+        }
+
+        #returnButton {
+            font-size: 24px;
+            padding: 5px 5px;
+            font-family: officeSquare;
+            color: #f2ebda;
+            cursor: pointer;
+            text-align: center;
+            background-color: #f79256;
+            border: 4px solid #1c4e89;
+            border-radius: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+        }
+
+        #textBox {
+            text-align: center;
+            width: 700px;
+        }
+
+        #backButton:after {
+            content: '\21A9';
+        }
+
+        #backButton {
+            font-size: 24px;
+            padding-left: 4px;
+            padding-right: 4px;
+            z-index: 10;
+            position: absolute;
+            left: 70px;
+            border-radius: 50px;
+        }
+
+        #videoButton {
+            font-size: 16px;
+            border-radius: 10px;
+            padding: 8px;
+            position: absolute;
+            left: 130px;
+        }
+
+        #start {
+            width: 100%;
+            height: 100%;
+            background-color: #fad1a2;
+            z-index: 10;
+            position: absolute;
+            text-align: center;
+        }
+
+        #finished {
+            width: 100%;
+            height: 100%;
+            background-color: #fad1a2;
+            z-index: 10;
+            position: absolute;
+            text-align: center;
+        }
+
+        #triggersButton {
+            z-index: 20;
+        }
+
+        #displayedMedia {
+            font-family: officeSquare;
+            font-size: 32px;
+            color: #1c4e89;
+            text-shadow: 5px 5px #f79256, 
+                        1px 1px 0 #f79256,
+                        1px -1px 0 #f79256,
+                        -1px -1px 0 #f79256;
+            position: fixed;
+
+        }
+
+        #letter {
+            position: fixed;
+        }
+
+        #progress {
+            z-index: 0;
+        }
+
+        #videoTriggers {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 100%;
+            height: 100%;
+            background-color: #fad1a2;
+            z-index: 5;
+            transform-origin: top left;
+            background-color: #7dcfb6;
+        }
+
+        #leftbar {
+        background-color: #fad1a2;
+        border:5px solid #1c4e89;
+        border-style: dashed;
+        width: 525px;
+        height: 740px;
+        text-align: center;
+        margin: 5px;
+        }
+
+        #tDiv {
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            width: 414px;
+            height: 706px;
+            margin: 7px;
+            color:#1c4e89;
+            background-color: #f2ebda;
+            border:5px solid #1c4e89;
+        }
+
+        #nDiv {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 414px;
+            height: 706px;
+            margin: 7px;
+            color:#1c4e89;
+            background-color: #f2ebda;
+            border:5px solid #1c4e89;
+
+
+        }
+
+        #paperBox {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 870px;
+            height: 740px;
+            margin: 7px;
+            color:#1c4e89;
+            background-color: #fad1a2;
+            border:5px solid #1c4e89;
+            border-style: dashed;
+        }
+
+        #tDivHeader {
+            line-height: 0px;
+            font-size: 46px;
+        }
+
+        #nDivHeader {
+            line-height: 0px;
+            font-size: 46px;
+        }
+
+        #returnButton2 {
+            position: absolute;
+            bottom: 10px;
+            left: 5px;
+        }
+
+        .popup {
+            background-color: #fad1a2;  
+            border:5px solid #1c4e89;
+            border-style: dashed; 
+            z-index: 5;
+            position: absolute;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 12px 15px 15px #416b5f;
+            left: 400px;
+            text-align: center;
+        }
+
+        .tilt-in-fwd-tl {
+            -webkit-animation: tilt-in-fwd-tl 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: tilt-in-fwd-tl 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+
+        @-webkit-keyframes tilt-in-fwd-tl {
+          0% {
+            -webkit-transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+                    transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+            opacity: 0;
+          }
+          100% {
+            -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+                    transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+            opacity: 1;
+          }
+        }
+        @keyframes tilt-in-fwd-tl {
+          0% {
+            -webkit-transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+                    transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+            opacity: 0;
+          }
+          100% {
+            -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+                    transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+            opacity: 1;
+          }
+        }
+
+        .tilt-back-fwd-tl {
+             -webkit-animation: tilt-in-fwd-tl 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) reverse both;
+            animation: tilt-in-fwd-tl 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) reverse both;
+        }
+
+        @-webkit-keyframes tilt-in-fwd-tl {
+          0% {
+            -webkit-transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+                    transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+            opacity: 0;
+          }
+          100% {
+            -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+                    transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+            opacity: 1;
+          }
+        }
+        @keyframes tilt-in-fwd-tl {
+          0% {
+            -webkit-transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+                    transform: rotateY(-20deg) rotateX(35deg) translate(-300px, -300px) skew(35deg, -10deg);
+            opacity: 0;
+          }
+          100% {
+            -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+                    transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+            opacity: 1;
+          }
+        }
+
+
+
+    </style>
+</head>
+
+
+<body>
+
+<audio id="hoverNoise" src="assets/audio/hover.wav"></audio>
+<audio id="clickNoise" src="assets/audio/click.mp3"></audio>
+<audio id="wrongNoise" src="assets/audio/wrong.mp3"></audio>
+
+<div id="instructions" class="smallScale hidden popup centered">
+    <div id="textBox" class="centered">
+        <h1>How to Play</h1>
+        <h2>
+            1. Keep your eyes on the &#43;.<br>
+            2. A trigger will appear. Keep looking at the &#43;.<br>
+            3. Once the trigger is done presenting itself, either an E or an F will appear either above or below the +. Type the correct letter that matches the letter shown.<br>
+            4. The round will continue 200 times. Once done, congratulate yourself!</h2>
+    </div>
+    <button id="returnButton" class="button" value="instructions" onclick="hidePopup(this.value);">Return</button>
+</div>
+
+<div id="videoTriggers" class="smallScale hidden">
+    <div id="leftbar">
+        <div id="textBox2">
+            <div class="videoDiv">
+                <h2 class="videoText">Trigger Videos</h2>
+                <div align="right"><input id="tVideoInput" type="file" accept="video/*" multiple="false" value="Select Video"></div>
+                <input type="button" id="tVideoButton" value="Add Video File">
+                <button class="button videoButton" onclick="removeTVideo();">Clear</button>
+
+            </div>
+
+            <hr>
+
+            <div class="videoDiv">
+                <h2 class="videoText">Neutral Videos</h2>
+                <div align="right"><input id="nVideoInput" type="file" accept="video/*" multiple="false" value="Select Video"></div>
+                <input type="button" id="nVideoButton" value="Add Video File">
+                <button class="button videoButton" onclick="removeNVideo();">Clear</button>
+            </div>
+        </div>
+        <hr>
+        <button id="returnButton2" class="button videoButton" onclick="hideVideos();">Return</button>
+    </div>
+
+    <div id="paperBox">
+        <div id="tDiv">
+            <h2 class="tNHeader" id="tDivHeader">Trigger Videos</h2>
+            <div id="tVideoDiv">
+            </div>
+        </div>
+
+        <div id="nDiv">
+            <h2 class="tNHeader" id="nDivHeader">Neutral Videos</h2>
+            <div id="nVideoDiv">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="eContainer">
+    <button class="button" value="instructions" onclick="showPopup(this.value);" id="question">?</button>
+    <button class="button" onclick="parent.location='index.html'" id="backButton"></button>
+    <button class="button" id="videoButton" onclick="showVideos();">Insert Video Triggers</button>
+
+    <button id="e" class="button centered" onclick="checkE();">E</button>
+</div>
+
+<div id="game" class="totalCenter">
+    <div id="start" onclick="determineStart(); updateArrays();">
+        <h2 class="totalCenter">To begin playing, click anywhere on this screen. Make sure your Triggers are set up before playing. Refresh the page after you are done adding the triggers.<button id="triggersButton" onclick="window.open('triggersList.html'); event.stopPropagation(); " class="button">Click here to set up your Triggers.</button></h2>
+
+    </div>
+
+    <div id="finished" class="hidden">
+        <h2 class="totalCenter">You are finished with training. Congrats!</h2>
+        <img src="assets/images/bobDancing.gif">
+    </div>
+    <progress id="progress" max="200" value="0"></progress>
+    <div id="displayedMedia" class="totalCenter hidden">
+    </div>
+    <h1 id="letter" class="totalCenter"></h1>
+    <h1 id="plus" class="totalCenter">&#43;</h1>
+</div>
+
+<div id="fContainer">
+<button id="f" class="button centered" onclick="checkF();">F</button>
+</div>
+
+
+<script src="exposureTrainingJS.js">
+
+
+</script>
+
+
+</body>
+</html>
